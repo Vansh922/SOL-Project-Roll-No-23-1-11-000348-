@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vocal Local Support | E-Commerce</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Vocal Local Support - A demo e-commerce website to promote local Indian sellers and artisans.">
+    <style>
+        /* Basic reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        }
+
+        body {
+            background: #f5f5f5;
+            color: #222;
+        }
+
+        /* Navbar */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: #ffffff;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        }
+
+        .nav {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0.75rem 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-weight: 800;
+            font-size: 1.1rem;
+        }
+
+        .logo span {
+            color: #0a7a3b;
+        }
+
+        .nav-links a {
+            margin-left: 1.2rem;
+            text-decoration: none;
+            font-size: 0.95rem;
+            color: #444;
+        }
+
+        .nav-links a:hover {
+            color: #0a7a3b;
+        }
+
+        .cart-pill {
+            background: #0a7a3b;
+            color: #fff;
+            padding: 0.3rem 0.75rem;
+            border-radius: 999px;
+            font-size: 0.85rem;
+        }
+
+        /* Hero */
+        .hero {
+            max-width: 1100px;
+            margin: 1.5rem auto;
+            padding: 1.5rem 1rem;
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .hero-text h1 {
+            font-size: 2.2rem;
+            line-height: 1.2;
+            margin-bottom: 0.75rem;
+        }
+
+        .hero-text h1 span {
+            color: #0a7a3b;
+        }
+
+        .hero-text p {
+            font-size: 0.95rem;
+            color: #555;
+            margin-bottom: 1rem;
+        }
+
+        .hero-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .badge {
+            font-size: 0.8rem;
+            padding: 0.35rem 0.7rem;
+            border-radius: 999px;
+            background: #e8f6ed;
+            color: #0a7a3b;
+        }
+
+        .btn-primary {
+            padding: 0.7rem 1.4rem;
+            border-radius: 999px;
+            border: none;
+            cursor: pointer;
+            background: #0a7a3b;
+            color: #fff;
+            font-size: 0.95rem;
+        }
+
+        .btn-primary:hover {
+            opacity: 0.9;
+        }
+
+        .hero-illustration {
+            background: #ffffff;
+            border-radius: 1.5rem;
+            padding: 1.2rem;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+        }
+
+        .hero-illustration h3 {
+            margin-bottom: 0.5rem;
+        }
+
+        .hero-illustration p {
+            font-size: 0.85rem;
+            color: #555;
+            margin-bottom: 0.6rem;
+        }
+
+        .hero-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+            margin-top: 0.5rem;
+        }
+
+        .hero-tag {
+            font-size: 0.75rem;
+            padding: 0.3rem 0.6rem;
+            border-radius: 999px;
+            border: 1px dashed #ddd;
+        }
+
+        /* Filters */
+        .filters {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 1rem 1rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .filters-left {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+        }
+
+        select, input[type="text"] {
+            padding: 0.45rem 0.6rem;
+            border-radius: 999px;
+            border: 1px solid #ddd;
+            font-size: 0.85rem;
+            min-width: 160px;
+            outline: none;
+        }
+
+        input[type="text"] {
+            min-width: 220px;
+        }
+
+        /* Products */
+        .products-section {
+            max-width: 1100px;
+            margin: 0 auto 2rem;
+            padding: 0 1rem 1rem;
+        }
+
+        .section-title {
+            font-size: 1.2rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1rem;
+        }
+
+        .product-card {
+            background: #ffffff;
+            border-radius: 1rem;
+            padding: 0.9rem;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.04);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-tag {
+            font-size: 0.7rem;
+            padding: 0.2rem 0.6rem;
+            border-radius: 999px;
+            background: #f1f1f1;
+            align-self: flex-start;
+            margin-bottom: 0.4rem;
+        }
+
+        .product-name {
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .product-seller {
+            font-size: 0.8rem;
+            color: #777;
+            margin-bottom: 0.4rem;
+        }
+
+        .product-desc {
+            font-size: 0.8rem;
+            color: #555;
+            margin-bottom: 0.6rem;
+            flex-grow: 1;
+        }
+
+        .product-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 0.3rem;
+        }
+
+        .price {
+            font-weight: 700;
+            font-size: 0.95rem;
+        }
+
+        .price span {
+            font-weight: 400;
+            font-size: 0.75rem;
+            color: #777;
+        }
+
+        .btn-secondary {
+            padding: 0.45rem 0.9rem;
+            border-radius: 999px;
+            border: none;
+            cursor: pointer;
+            background: #111827;
+            color: #fff;
+            font-size: 0.8rem;
+        }
+
+        .btn-secondary:hover {
+            opacity: 0.9;
+        }
+
+        /* About & Contact */
+        .info-section {
+            max-width: 1100px;
+            margin: 1rem auto 2rem;
+            padding: 1rem;
+            background: #ffffff;
+            border-radius: 1.2rem;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.04);
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 1.5rem;
+        }
+
+        .info-section h2 {
+            margin-bottom: 0.5rem;
+        }
+
+        .info-section p {
+            font-size: 0.9rem;
+            color: #555;
+            margin-bottom: 0.4rem;
+        }
+
+        .contact-box label {
+            font-size: 0.8rem;
+        }
+
+        .contact-box input, .contact-box textarea {
+            width: 100%;
+            padding: 0.45rem 0.6rem;
+            border-radius: 0.75rem;
+            border: 1px solid #ddd;
+            font-size: 0.85rem;
+            margin: 0.2rem 0 0.6rem;
+            outline: none;
+        }
+
+        .contact-box textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 0.8rem;
+            font-size: 0.8rem;
+            color: #777;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero, .info-section {
+                grid-template-columns: 1fr;
+            }
+            .hero {
+                gap: 1.25rem;
+            }
+            .nav {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
+            }
+            .filters {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="nav">
+        <div class="logo">
+            Vocal <span>Local</span> Support
+        </div>
+        <div class="nav-links">
+            <a href="#home">Home</a>
+            <a href="#products">Products</a>
+            <a href="#about">About</a>
+            <span class="cart-pill">Cart: <span id="cartCount">0</span> items</span>
+        </div>
+    </div>
+</header>
+
+<main id="home">
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-text">
+            <h1>Support <span>Local Sellers</span> with Every Purchase</h1>
+            <p>
+                Vocal Local Support ek chhota sa step hai jisse hum local artisans, small businesses 
+                aur home-grown brands ko online platform dete hain. Yahan listed har product ke peeche 
+                ek real kahaani hai.
+            </p>
+            <div class="hero-badges">
+                <span class="badge">Handmade Products</span>
+                <span class="badge">Made in India</span>
+                <span class="badge">Support Small Businesses</span>
+            </div>
+            <button class="btn-primary" onclick="scrollToProducts()">Shop Local Now</button>
+        </div>
+
+        <div class="hero-illustration">
+            <h3>Why “Vocal Local Support”?</h3>
+            <p>• Local jobs create hoti hain</p>
+            <p>• Traditional art & culture bacha rehte hain</p>
+            <p>• Direct benefit small sellers ko milta hai</p>
+            <div class="hero-tags">
+                <span class="hero-tag">Ethnic Wear</span>
+                <span class="hero-tag">Handicrafts</span>
+                <span class="hero-tag">Organic Foods</span>
+                <span class="hero-tag">Home Décor</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Filters -->
+    <section class="filters">
+        <div class="filters-left">
+            <select id="categoryFilter" onchange="filterProducts()">
+                <option value="all">All Categories</option>
+                <option value="Handicraft">Handicraft</option>
+                <option value="Clothing">Clothing</option>
+                <option value="Food">Food</option>
+                <option value="Home Decor">Home Decor</option>
+            </select>
+
+            <select id="priceFilter" onchange="filterProducts()">
+                <option value="all">All Prices</option>
+                <option value="low">Below ₹500</option>
+                <option value="mid">₹500 - ₹1000</option>
+                <option value="high">Above ₹1000</option>
+            </select>
+        </div>
+
+        <input type="text" id="searchInput" placeholder="Search products..." onkeyup="filterProducts()">
+    </section>
+
+    <!-- Products -->
+    <section class="products-section" id="products">
+        <h2 class="section-title">Featured Local Products</h2>
+        <div class="products-grid" id="productsGrid">
+            <!-- Products generated via JS -->
+        </div>
+    </section>
+
+    <!-- About + Contact -->
+    <section class="info-section" id="about">
+        <div>
+            <h2>About Vocal Local Support</h2>
+            <p>
+                Ye website BCA project ke liye banayi gayi hai jiska main focus eco-system
+                ko digital banana hai jahan local sellers apne products ko list kar sakein.
+            </p>
+            <p>
+                Actual payment gateway / backend is demo only, lekin structure aise design 
+                kiya gaya hai ki aage chal ke isse full-stack application mein convert kiya ja sakta hai.
+            </p>
+            <p><strong>Future Scope:</strong></p>
+            <p>• Online payment integration</p>
+            <p>• Seller dashboard</p>
+            <p>• Order tracking system</p>
+        </div>
+
+        <div class="contact-box">
+            <h3>Contact Us (Demo)</h3>
+            <label>Name</label>
+            <input type="text" placeholder="Enter your name">
+            <label>Email</label>
+            <input type="email" placeholder="Enter your email">
+            <label>Message</label>
+            <textarea placeholder="How can we help you?"></textarea>
+            <button class="btn-primary" onclick="alert('This is a demo form for project presentation.')">
+                Submit
+            </button>
+        </div>
+    </section>
+</main>
+
+<footer>
+    © 2025 Vocal Local Support – BCA Project Demo. All rights reserved.
+</footer>
+
+<script>
+    // Demo product data
+    const products = [
+        {
+            id: 1,
+            name: "Handmade Terracotta Vase",
+            seller: "Mitti Kala Studio, Jaipur",
+            category: "Handicraft",
+            price: 699,
+            desc: "Locally crafted terracotta vase perfect for ethnic home décor."
+        },
+        {
+            id: 2,
+            name: "Organic Wild Honey (500g)",
+            seller: "Himalayan Naturals, Uttarakhand",
+            category: "Food",
+            price: 480,
+            desc: "Pure, chemical-free wild honey collected by local beekeepers."
+        },
+        {
+            id: 3,
+            name: "Handloom Cotton Kurta",
+            seller: "Desi Weaves, Lucknow",
+            category: "Clothing",
+            price: 1199,
+            desc: "Soft handloom cotton kurta stitched by local tailors."
+        },
+        {
+            id: 4,
+            name: "Bamboo Table Lamp",
+            seller: "North East Craft House, Assam",
+            category: "Home Decor",
+            price: 950,
+            desc: "Eco-friendly bamboo lamp made by tribal artisans."
+        },
+        {
+            id: 5,
+            name: "Jute Carry Bag",
+            seller: "Eco Bags Co., Kolkata",
+            category: "Handicraft",
+            price: 320,
+            desc: "Reusable jute bag to reduce plastic usage and support local women groups."
+        },
+        {
+            id: 6,
+            name: "Spice Mix Combo Pack",
+            seller: "Apna Masala Ghar, Delhi",
+            category: "Food",
+            price: 540,
+            desc: "Traditional spice blends prepared with age-old family recipes."
+        }
+    ];
+
+    let cartCount = 0;
+
+    function scrollToProducts() {
+        document.getElementById("products").scrollIntoView({ behavior: "smooth" });
+    }
+
+    function renderProducts(list) {
+        const grid = document.getElementById("productsGrid");
+        grid.innerHTML = "";
+
+        if (list.length === 0) {
+            grid.innerHTML = "<p>No products found. Try different filters.</p>";
+            return;
+        }
+
+        list.forEach(p => {
+            const card = document.createElement("div");
+            card.className = "product-card";
+            card.setAttribute("data-category", p.category);
+            card.setAttribute("data-price", p.price);
+
+            card.innerHTML = `
+                <span class="product-tag">${p.category}</span>
+                <div class="product-name">${p.name}</div>
+                <div class="product-seller">${p.seller}</div>
+                <div class="product-desc">${p.desc}</div>
+                <div class="product-footer">
+                    <div class="price">₹${p.price} <span>incl. all taxes</span></div>
+                    <button class="btn-secondary" onclick="addToCart(${p.id})">Add to Cart</button>
+                </div>
+            `;
+            grid.appendChild(card);
+        });
+    }
+
+    function filterProducts() {
+        const categoryValue = document.getElementById("categoryFilter").value;
+        const priceValue = document.getElementById("priceFilter").value;
+        const searchText = document.getElementById("searchInput").value.toLowerCase();
+
+        let filtered = products.filter(p => {
+            let categoryMatch = categoryValue === "all" || p.category === categoryValue;
+
+            let priceMatch = true;
+            if (priceValue === "low") priceMatch = p.price < 500;
+            else if (priceValue === "mid") priceMatch = p.price >= 500 && p.price <= 1000;
+            else if (priceValue === "high") priceMatch = p.price > 1000;
+
+            let searchMatch =
+                p.name.toLowerCase().includes(searchText) ||
+                p.seller.toLowerCase().includes(searchText) ||
+                p.category.toLowerCase().includes(searchText);
+
+            return categoryMatch && priceMatch && searchMatch;
+        });
+
+        renderProducts(filtered);
+    }
+
+    function addToCart(id) {
+        cartCount++;
+        document.getElementById("cartCount").textContent = cartCount;
+        alert("Product added to cart (demo). Cart count: " + cartCount);
+    }
+
+    // Initial render
+    renderProducts(products);
+</script>
+
+</body>
+</html>
